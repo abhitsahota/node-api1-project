@@ -1,12 +1,20 @@
 const express = require('express')
 const shortid = require('shortid')
+const cors = require('cors')
 
 const server = express()
 const PORT = 5000
 
-let users = []
+let users = [
+    {
+        id: shortid.generate(),
+        name: 'bob',
+        bio: 'im named bob'
+    }
+]
 
 server.use(express.json())
+server.use(cors())
 
 server.get('/', (req, res) => {
     res.json({message: 'hello'})
@@ -82,8 +90,9 @@ server.put('/api/users/:id', (req, res) => {
     const { id } = req.params
     const newUser = req.body
     const existingUserIndex = users.findIndex(u => u.id === id)
+    console.log(existingUserIndex)
 
-    if (user) {
+    if (existingUserIndex) {
 
         if ( user.name && user.bio ) {
             try {
