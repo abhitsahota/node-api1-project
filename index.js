@@ -1,9 +1,10 @@
+require('dotenv').config()
 const express = require('express')
 const shortid = require('shortid')
 const cors = require('cors')
 
 const server = express()
-const PORT = 5000
+const port = process.env.PORT || 3030
 
 let users = [
     {
@@ -111,6 +112,6 @@ server.put('/api/users/:id', (req, res) => {
     
 })
 
-server.listen(PORT, () => {
-    console.log(`listening on http://localhost:${PORT}`)
+server.listen(port, () => {
+    console.log(`listening on http://localhost:${port}`)
 })
