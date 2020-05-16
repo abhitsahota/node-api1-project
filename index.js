@@ -18,7 +18,7 @@ server.use(express.json())
 server.use(cors())
 
 server.get('/', (req, res) => {
-    res.json({message: 'hello'})
+    res.json({message: process.env.MOTD})
 })
 
 server.post('/api/users/', (req, res) => {
